@@ -3,7 +3,6 @@ import "./globals.css";
 import {Poppins} from 'next/font/google'
 import React from "react";
 import {ClerkProvider} from "@clerk/nextjs";
-import "@uploadthing/react/styles.css"
 
 const poppins = Poppins({
     subsets: ['latin'],
