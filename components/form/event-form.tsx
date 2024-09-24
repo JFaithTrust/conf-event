@@ -41,7 +41,11 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
         : eventDefaultValues;
     const router = useRouter();
 
-    const { startUpload } = useUploadThing('imageUploader')
+    const { startUpload } = useUploadThing('imageUploader',{
+        onUploadError: (error) => {
+            console.log(error)
+        }
+    })
 
     const form = useForm<z.infer<typeof eventFormSchema>>({
         resolver: zodResolver(eventFormSchema),
@@ -53,6 +57,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
 
         if(files.length > 0) {
             const uploadedImages = await startUpload(files)
+            console.log(uploadedImages)
 
             if(!uploadedImages) {
                 return
